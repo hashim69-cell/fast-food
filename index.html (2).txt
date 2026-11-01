@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foodie - Fast Food Restaurant</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #fff;
+    color: #222;
+}
+
+header {
+    background: #171717;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #ffcc00;
+}
+
+.hero {
+    min-height: 550px;
+    background: linear-gradient(#0009,#0009),
+    url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1600')
+    center/cover;
+    display: flex;
+    align-items: center;
+    padding: 7%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #ffcc00;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    background: #ffcc00;
+    color: #171717;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #f0a800;
+}
+
+section {
+    padding: 70px 7%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.search-box {
+    display: block;
+    margin: 0 auto 30px;
+    padding: 13px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+}
+
+.food-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #0001;
+    transition: .3s;
+}
+
+.food-card:hover {
+    transform: translateY(-7px);
+}
+
+.food-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.food-info {
+    padding: 20px;
+}
+
+.food-info h3 {
+    margin-bottom: 10px;
+}
+
+.food-info p {
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.price {
+    color: #e63900;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.food-info button {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.about {
+    background: #171717;
+    color: white;
+    text-align: center;
+}
+
+.about p {
+    max-width: 700px;
+    margin: 20px auto;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+.cart {
+    background: #fff8e1;
+    text-align: center;
+}
+
+.cart-items {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-total {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.contact {
+    text-align: center;
+}
+
+.contact p {
+    margin: 15px;
+    color: #555;
+}
+
+footer {
+    background: #171717;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+@media(max-width: 700px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 7px;
+        font-size: 13px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🍔 FOODIE</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#cart">Cart 🛒</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>Delicious Food <span>Every Day!</span></h1>
+        <p>
+            Welcome to Foodie! Enjoy delicious burgers,
+            pizzas, fries and much more. Fresh ingredients,
+            amazing taste and fast service.
+        </p>
+        <a href="#menu" class="btn">ORDER NOW</a>
+    </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+    <h2 class="section-title">Our Delicious Menu</h2>
+    <p class="subtitle">Choose your favorite fast food!</p>
+
+    <input
+        type="text"
+        id="search"
+        class="search-box"
+        placeholder="Search your favorite food..."
+    >
+
+    <div class="menu" id="foodMenu"></div>
+</section>
+
+<!-- CART -->
+<section class="cart" id="cart">
+    <h2 class="section-title">🛒 Your Shopping Cart</h2>
+
+    <div class="cart-items" id="cartItems">
+        Your cart is empty.
+    </div>
+
+    <div class="cart-total" id="total">
+        Total: Rs. 0
+    </div>
+
+    <button class="btn" onclick="checkout()">
+        Place Order
+    </button>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <h2 class="section-title">About Foodie</h2>
+    <p>
+        Foodie is your favorite destination for delicious fast food.
+        We serve fresh burgers, crispy fries, tasty pizzas and
+        refreshing drinks. Our mission is to provide great taste,
+        quality food and excellent customer service.
+    </p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p>📍 Your Restaurant Address</p>
+    <p>📞 +92 300 1234567</p>
+    <p>✉️ foodie@example.com</p>
+    <p>🕒 Open Daily: 12 PM - 12 AM</p>
+</section>
+
+<footer>
+    <p>© 2026 Foodie Restaurant | All Rights Reserved</p>
+</footer>
+
+<script>
+const foods = [
+    {
+        name: "Classic Burger",
+        description: "Juicy beef burger with fresh vegetables.",
+        price: 450,
+        image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500"
+    },
+    {
+        name: "Cheese Pizza",
+        description: "Delicious pizza loaded with cheese.",
+        price: 950,
+        image: "https://images.unsplash.com/photo- pizza-500"
+    },
+    {
+        name: "French Fries",
+        description: "Golden and crispy french fries.",
+        price: 250,
+        image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500"
+    },
+    {
+        name: "Chicken Burger",
+        description: "Crispy chicken with special sauce.",
+        price: 550,
+        image: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=500"
+    },
+    {
+        name: "Chicken Pizza",
+        description: "Tasty chicken pizza with fresh toppings.",
+        price: 1100,
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+    },
+    {
+        name: "Cold Drink",
+        description: "Refreshing chilled drink.",
+        price: 120,
+        image: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?w=500"
+    }
+];
+
+let cart = [];
+
+function displayFoods(items) {
+    const menu = document.getElementById("foodMenu");
+
+    menu.innerHTML = items.map((food) => `
+        <div class="food-card">
+            <img src="${food.image}" alt="${food.name}"
+                 onerror="this.src='https://placehold.co/500x300?text=Food'">
+            <div class="food-info">
+                <h3>${food.name}</h3>
+                <p>${food.description}</p>
+                <div class="price">Rs. ${food.price}</div>
+                <button class="btn" onclick="addToCart('${food.name}')">
+                    Add to Cart +
+                </button>
+            </div>
+        </div>
+    `).join("");
+}
+
+function addToCart(name) {
+    const food = foods.find(item => item.name === name);
+    const existing = cart.find(item => item.name === name);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({...food, quantity: 1});
+    }
+
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById("cartItems");
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = "Your cart is empty.";
+    } else {
+        cartItems.innerHTML = cart.map((item, index) => `
+            <div class="cart-item">
+                <span>
+                    ${item.name} x ${item.quantity}
+                </span>
+                <span>
+                    Rs. ${item.price * item.quantity}
+                    <button onclick="removeItem(${index})">❌</button>
+                </span>
+            </div>
+        `).join("");
+    }
+
+    let total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+    );
+
+    document.getElementById("total").innerText =
+        "Total: Rs. " + total;
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Please add food to your cart first!");
+        return;
+    }
+
+    let message = "Hello! I want to place an order:\n\n";
+
+    cart.forEach(item => {
+        message += `${item.name} x ${item.quantity} = Rs. ${item.price * item.quantity}\n`;
+    });
+
+    let total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+    );
+
+    message += `\nTotal: Rs. ${total}`;
+
+    const phone = "923001234567";
+
+    window.open(
+        "https://wa.me/" + phone + "?text=" +
+        encodeURIComponent(message),
+        "_blank"
+    );
+}
+
+document.getElementById("search").addEventListener("input", function() {
+    const query = this.value.toLowerCase();
+
+    const filtered = foods.filter(food =>
+        food.name.toLowerCase().includes(query)
+    );
+
+    displayFoods(filtered);
+});
+
+displayFoods(foods);
+</script>
+
+</body>
+</html>
